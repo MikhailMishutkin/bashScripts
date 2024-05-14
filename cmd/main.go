@@ -10,6 +10,7 @@ func init() {
 
 }
 
+//можно запустить всё командой make в консоли
 func main() {
 	err := app.Start()
 	if err != nil {
