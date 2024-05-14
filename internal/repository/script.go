@@ -45,7 +45,7 @@ func (r *Repo) GetScriptsList(ctx context.Context) ([]*models.Script, error) {
 
 	rows, err := r.db.Query(ctx, query)
 	if err != nil {
-		return nil, fmt.Errorf("errot to get filials title and id from db: %v\n", err)
+		return nil, fmt.Errorf("errot to get scripts: %v\n", err)
 	}
 	defer rows.Close()
 
@@ -53,7 +53,7 @@ func (r *Repo) GetScriptsList(ctx context.Context) ([]*models.Script, error) {
 		s := &models.Script{}
 		err := rows.Scan(&s.UUID, &s.Name, &s.Result)
 		if err != nil {
-			return nil, fmt.Errorf("error to scan filial id and title: %v\n", err)
+			return nil, fmt.Errorf("error to scripts: %v\n", err)
 		}
 
 		scriptsList = append(scriptsList, s)
@@ -73,7 +73,7 @@ func (r *Repo) GetCommandsList(ctx context.Context, id int) (s []string, err err
 
 	rows, err := r.db.Query(ctx, query, id)
 	if err != nil {
-		return nil, fmt.Errorf("errot to get filials title and id from db: %v\n", err)
+		return nil, fmt.Errorf("errot to get commands from db: %v\n", err)
 	}
 	defer rows.Close()
 
@@ -81,7 +81,7 @@ func (r *Repo) GetCommandsList(ctx context.Context, id int) (s []string, err err
 		var command string
 		err := rows.Scan(&command)
 		if err != nil {
-			return nil, fmt.Errorf("error to scan filial id and title: %v\n", err)
+			return nil, fmt.Errorf("error to scan commands: %v\n", err)
 		}
 
 		s = append(s, command)
